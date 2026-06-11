@@ -1,24 +1,310 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kontakty</title>
-    <style>
-        html, body {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            overflow: hidden;
-        }
-        iframe {
-            border: none;
-            width: 100%;
-            height: 100vh;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kontakty – TD SYNNEX BU Software &amp; Cloud</title>
+<meta name="description" content="Kontaktní seznam týmu Microsoft, Adobe a Cloud – TD SYNNEX Czech Republic.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --darkTeal:#0D4D4D;
+  --teal-deep:#082f2f;
+  --accent:#1DB87E;
+  --accent-soft:#1db87e1a;
+  --ink:#14201f;
+  --muted:#5d6e6c;
+  --card:#ffffff;
+  --bg:#f4f6f5;
+  --line:#e2e8e6;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',system-ui,sans-serif;
+  background:var(--bg);color:var(--ink);
+  line-height:1.55;-webkit-font-smoothing:antialiased;
+}
+
+/* ---------- Header ---------- */
+.hero{
+  background:linear-gradient(150deg,var(--darkTeal) 0%,var(--teal-deep) 100%);
+  color:#fff;padding:54px 24px 92px;position:relative;overflow:hidden;
+}
+.hero::after{
+  content:"";position:absolute;right:-120px;top:-120px;
+  width:420px;height:420px;
+  background:radial-gradient(circle,var(--accent) 0%,transparent 70%);
+  opacity:.18;pointer-events:none;
+}
+.hero-inner{max-width:1080px;margin:0 auto;position:relative;z-index:1}
+.brand{
+  display:inline-flex;align-items:center;gap:12px;
+  font-family:'Space Grotesk',sans-serif;font-weight:700;
+  letter-spacing:.04em;font-size:1rem;text-transform:uppercase;
+}
+.brand .dot{width:10px;height:10px;border-radius:50%;background:var(--accent)}
+.hero h1{
+  font-family:'Space Grotesk',sans-serif;font-weight:700;
+  font-size:clamp(2rem,5vw,3rem);line-height:1.08;margin:24px 0 12px;
+}
+.hero p{font-size:1.08rem;color:#cfe3df;max-width:56ch}
+
+/* ---------- Search ---------- */
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+.searchbar{
+  margin-top:-46px;position:relative;z-index:3;
+  display:flex;align-items:center;gap:12px;
+  background:var(--card);border:1px solid var(--line);
+  border-radius:14px;padding:6px 6px 6px 18px;
+  box-shadow:0 8px 28px rgba(13,77,77,.12);
+}
+.searchbar svg{width:20px;height:20px;color:var(--muted);flex:0 0 auto}
+.searchbar input{
+  border:none;outline:none;flex:1;font-size:1rem;
+  font-family:'Inter',sans-serif;padding:12px 4px;background:transparent;color:var(--ink);
+}
+.searchbar input::placeholder{color:#9aa9a6}
+
+/* ---------- BU Lead ---------- */
+.lead{
+  margin-top:48px;
+  background:linear-gradient(135deg,#0e5454 0%,#0D4D4D 100%);
+  color:#fff;border-radius:16px;padding:26px 28px;
+  display:flex;flex-wrap:wrap;align-items:center;gap:18px 28px;
+  position:relative;overflow:hidden;
+}
+.lead::before{
+  content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--accent);
+}
+.lead-avatar{
+  width:54px;height:54px;border-radius:14px;flex:0 0 auto;
+  background:var(--accent);color:#06302a;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.25rem;
+}
+.lead-info{flex:1;min-width:200px}
+.lead-info .eyebrow{
+  font-family:'Space Grotesk',sans-serif;text-transform:uppercase;
+  letter-spacing:.08em;font-size:.7rem;font-weight:600;color:var(--accent);margin-bottom:4px;
+}
+.lead-info h2{font-family:'Space Grotesk',sans-serif;font-size:1.35rem;font-weight:600}
+.lead-info .role{color:#cfe3df;font-size:.95rem;margin-top:2px}
+.lead-actions{display:flex;flex-wrap:wrap;gap:10px}
+.lead-actions a{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);
+  color:#fff;text-decoration:none;padding:11px 16px;border-radius:10px;
+  font-size:.9rem;font-weight:500;transition:background .16s ease,border-color .16s ease;
+}
+.lead-actions a:hover,.lead-actions a:focus-visible{background:var(--accent);border-color:var(--accent);outline:none}
+.lead-actions svg{width:16px;height:16px}
+
+/* ---------- Sections ---------- */
+.section{margin-top:40px}
+.section-head{display:flex;align-items:baseline;gap:12px;margin-bottom:16px;flex-wrap:wrap}
+.section-head .eyebrow{
+  font-family:'Space Grotesk',sans-serif;text-transform:uppercase;
+  letter-spacing:.08em;font-size:.72rem;font-weight:600;color:var(--accent);
+}
+.section-head h2{font-family:'Space Grotesk',sans-serif;font-size:1.5rem;font-weight:600}
+.section-head .hint{color:var(--muted);font-size:.88rem}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.contact{
+  background:var(--card);border:1px solid var(--line);border-radius:14px;
+  padding:20px 20px 16px;display:flex;flex-direction:column;
+  transition:box-shadow .16s ease,border-color .16s ease,transform .16s ease;
+}
+.contact:hover{box-shadow:0 10px 26px rgba(13,77,77,.1);border-color:#cfe0db;transform:translateY(-2px)}
+.contact .name{font-family:'Space Grotesk',sans-serif;font-size:1.12rem;font-weight:600;display:flex;align-items:center;gap:8px}
+.flag{font-size:.7rem;font-weight:600;color:var(--darkTeal);background:var(--accent-soft);border:1px solid #bfe7d8;padding:1px 7px;border-radius:20px;letter-spacing:.03em}
+.contact .role{color:var(--muted);font-size:.9rem;margin:5px 0 14px;flex:1}
+.contact .links{display:flex;flex-direction:column;gap:7px}
+.contact .links a{
+  display:inline-flex;align-items:center;gap:9px;text-decoration:none;
+  color:var(--darkTeal);font-size:.92rem;font-weight:500;
+  padding:6px 0;transition:color .14s ease;
+}
+.contact .links a:hover,.contact .links a:focus-visible{color:var(--accent);outline:none}
+.contact .links svg{width:16px;height:16px;color:var(--accent);flex:0 0 auto}
+
+.noresults{display:none;text-align:center;color:var(--muted);padding:40px 0;font-size:1rem}
+
+footer{text-align:center;padding:48px 24px;color:var(--muted);font-size:.85rem}
+footer a{color:var(--darkTeal);font-weight:500}
+
+@media (max-width:560px){
+  .hero{padding:42px 20px 84px}
+  .lead{flex-direction:column;align-items:flex-start}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto}}
+</style>
 </head>
 <body>
-    <iframe src="Kontakty.pdf"></iframe>
+
+<header class="hero">
+  <div class="hero-inner">
+    <span class="brand"><span class="dot"></span>TD SYNNEX&nbsp;CZ</span>
+    <h1>Kontakty</h1>
+    <p>Tým BU Software &amp; Cloud – Microsoft, Adobe a bezpečnostní řešení. Najděte správnou osobu podle oblasti.</p>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <div class="searchbar">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <input type="text" id="search" placeholder="Hledat podle jména, oblasti nebo značky…" aria-label="Hledat kontakt">
+  </div>
+
+  <section id="directory"></section>
+  <p class="noresults" id="noresults">Žádný kontakt neodpovídá hledání.</p>
+
+</main>
+
+<footer>
+  TD SYNNEX Czech Republic &nbsp;·&nbsp; <a href="https://tdsynnexcz.github.io/">Přehled nástrojů</a>
+</footer>
+
+<script>
+/* ============================================================
+   PŘIDÁNÍ / ÚPRAVA KONTAKTU = úprava pole SECTIONS níže.
+   Telefon piš v "phone" pro zobrazení (s mezerami).
+   ============================================================ */
+const LEAD = {
+  name:"Martin Hála",
+  role:"Business Unit Manager | Microsoft AI & Cloud",
+  phone:"+420 724 250 413",
+  email:"martin.hala@tdsynnex.com"
+};
+
+const SECTIONS = [
+  {
+    title:"Microsoft Azure",
+    contacts:[
+      {name:"Vladimír Krajkář", role:"Business Development Manager Microsoft Azure", phone:"+420 724 715 611", email:"vladimir.krajkar@tdsynnex.com"},
+      {name:"Martin Knápek", role:"Microsoft Azure Technical Presales", phone:"+420 730 544 842", email:"martin.knapek@tdsynnex.com"},
+      {name:"Zdeněk Prášil", role:"Business Development Manager Azure", phone:"+420 721 715 763", email:"zdenek.prasil@tdsynnex.com"}
+    ]
+  },
+  {
+    title:"Modern Work & Security (Microsoft 365 / CSP)",
+    contacts:[
+      {name:"Luděk Marold", role:"Product Manager Microsoft CSP, BitTitan", phone:"+420 774 523 419", email:"ludek.marold@tdsynnex.com"},
+      {name:"Luděk Melen", role:"Business Development Manager Microsoft 365", phone:"+420 601 348 691", email:"ludek.melen@tdsynnex.com"},
+      {name:"Vojtěch Baštýř", role:"Microsoft CSP Specialist, StreamOne expert", phone:"+420 724 250 443", email:"vojtech.bastyr@tdsynnex.com"},
+      {name:"Kristina Figelyová", role:"Microsoft Sales support (CSP, OV, OVS, SPLA)", phone:"+420 602 451 240", email:"kristina.figelyova@tdsynnex.com"},
+      {name:"Andrea Gafriková", flag:"SK", role:"Business Development Microsoft CSP Slovakia", phone:"+421 917 490 301", email:"andrea.gafrikova@tdsynnex.com"},
+      {name:"Martina Hubová", flag:"SK", role:"Business Development Microsoft CSP Slovakia", phone:"+421 902 583 504", email:"martina.hubova@tdsynnex.com"}
+    ]
+  },
+  {
+    title:"Open Value / OVS / SPLA",
+    hint:"Licenční programy – stejný tým jako Modern Work",
+    contacts:[
+      {name:"Kristina Figelyová", role:"Microsoft Sales support (CSP, OV, OVS, SPLA)", phone:"+420 602 451 240", email:"kristina.figelyova@tdsynnex.com"},
+      {name:"Andrea Gafriková", flag:"SK", role:"Business Development Microsoft CSP Slovakia", phone:"+421 917 490 301", email:"andrea.gafrikova@tdsynnex.com"}
+    ]
+  },
+  {
+    title:"Microsoft Dynamics 365",
+    contacts:[
+      {name:"Roman Slobodník", role:"Business Development Manager Microsoft Dynamics 365", phone:"+420 725 308 704", email:"roman.slobodnik@tdsynnex.com"}
+    ]
+  },
+  {
+    title:"Adobe & Microsoft FPP / ESD / OEM",
+    contacts:[
+      {name:"Michal Nemček", role:"Product Manager Adobe, Microsoft OEM, ESD, FPP", phone:"+420 724 250 416", email:"michal.nemcek@tdsynnex.com"}
+    ]
+  },
+  {
+    title:"Security, Consumer & SMB software",
+    hint:"Acronis, Avast, AVG, Norton, Symantec, NordVPN, Corel",
+    contacts:[
+      {name:"Natalia Sztolariková", role:"Sales Specialist – Acronis, Avast, AVG, Norton, Symantec, NordVPN (Nord Security), Corel", phone:"+420 777 523 425", email:"natalia.sztolarikova@tdsynnex.com"}
+    ]
+  },
+  {
+    title:"Marketing",
+    contacts:[
+      {name:"Marek Svatoň", role:"Microsoft Marketing Manager", phone:"+420 739 323 635", email:"marek.svaton@tdsynnex.com"}
+    ]
+  }
+];
+
+/* ---- Ikony ---- */
+const I = {
+  phone:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>',
+  mail:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg>'
+};
+
+const tel = p => "tel:" + p.replace(/\s+/g,"");
+
+function contactCard(c){
+  return `
+  <article class="contact" data-search="${(c.name+' '+c.role+' '+(c.flag||'')).toLowerCase()}">
+    <div class="name">${c.name}${c.flag?`<span class="flag">${c.flag}</span>`:''}</div>
+    <div class="role">${c.role}</div>
+    <div class="links">
+      <a href="${tel(c.phone)}">${I.phone}${c.phone}</a>
+      <a href="mailto:${c.email}">${I.mail}${c.email}</a>
+    </div>
+  </article>`;
+}
+
+const dir = document.getElementById('directory');
+dir.innerHTML = SECTIONS.map(s => `
+  <section class="section" data-section="${s.title.toLowerCase()}">
+    <div class="section-head">
+      <h2>${s.title}</h2>
+      ${s.hint?`<span class="hint">${s.hint}</span>`:''}
+    </div>
+    <div class="grid">${s.contacts.map(contactCard).join('')}</div>
+  </section>
+`).join('');
+
+/* ---- Vyhledávání ---- */
+const search = document.getElementById('search');
+const noresults = document.getElementById('noresults');
+search.addEventListener('input', () => {
+  const q = search.value.trim().toLowerCase();
+  let anyVisible = false;
+  document.querySelectorAll('.section').forEach(sec => {
+    const secMatch = sec.dataset.section.includes(q);
+    let cardsVisible = 0;
+    sec.querySelectorAll('.contact').forEach(card => {
+      const show = !q || secMatch || card.dataset.search.includes(q);
+      card.style.display = show ? '' : 'none';
+      if(show) cardsVisible++;
+    });
+    sec.style.display = cardsVisible ? '' : 'none';
+    if(cardsVisible) anyVisible = true;
+  });
+  noresults.style.display = anyVisible ? 'none' : 'block';
+});
+</script>
+
+<!-- BU Lead se vykreslí nahoru přes JS -->
+<script>
+const leadHTML = `
+<div class="lead">
+  <div class="lead-avatar">${LEAD.name.split(' ').map(w=>w[0]).join('').slice(0,2)}</div>
+  <div class="lead-info">
+    <div class="eyebrow">Vedoucí týmu</div>
+    <h2>${LEAD.name}</h2>
+    <div class="role">${LEAD.role}</div>
+  </div>
+  <div class="lead-actions">
+    <a href="${tel(LEAD.phone)}">${I.phone}${LEAD.phone}</a>
+    <a href="mailto:${LEAD.email}">${I.mail}${LEAD.email}</a>
+  </div>
+</div>`;
+document.getElementById('directory').insertAdjacentHTML('beforeend', leadHTML);
+</script>
+
 </body>
 </html>
